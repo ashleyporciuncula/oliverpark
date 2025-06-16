@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oliver Park</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: #c7c2bc;
+      font-family: Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      filter: brightness(85%);
+      color: #9e8c77;
+    }
+
+    a:hover {
+      filter: brightness(100%);
+    }
+
+    #header{
+      width:100%;
+      max-width: 850px;
+      margin: 0 auto;
+      font-size: 12px;
+      text-align: center;      
+      padding:30px 0;
+    }
+    #header b{
+      font-family: 'Special Elite', cursive;
+      font-weight: bold;
+      color: #9e8c77;
+      font-size:15px;
+      margin-right:10px;
+    }
+    #header span{
+      color: #9e8c77;
+    }
+
+    #content {
+      max-width: 850px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .box {
+      background-color: #222;      
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      flex: 1 1 calc(50%);
+      aspect-ratio: 1 / 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      box-sizing: border-box;
+      transition: filter 0.2s ease;
+    }
+
+    .box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .box > .title,
+    .box > .subtitle {
+      position: relative;
+      z-index: 1;
+    }
+
+    .box:hover > .title{
+      color: white;
+    }
+
+    .title {
+      font-family: 'Special Elite', cursive;
+      font-weight: bold;
+      font-size: 25.6px;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 12px;
+      color:#9e8c77;
+    }
+
+    @media (max-width: 600px) {
+      .box {
+        flex: 1 1 100%;
+        aspect-ratio: 3 / 2;
+      }
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      overflow-y: auto;
+      padding: 20px;
+      box-sizing: border-box;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .modal.hide {
+      opacity: 0;
+    }
+
+    .modal-content {
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .modal-header {
+      font-family: 'Special Elite', cursive;
+      text-transform: uppercase;      
+      margin: 80px 0 20px;
+      color: #9e8c77;
+    }
+
+    .close {
+      font-size: 14px;
+      letter-spacing: 0.1rem;
+      font-weight:600;
+      cursor: pointer;
+      margin-top: 20px;
+      color: #70614f;
+    }
+
+    .close.bottom {
+      display: block;
+      margin-top: 60px;
+    }
+
+    .poster {      
+      width: 200px;
+      height: auto;    
+      max-width:100%;  
+      display:block;
+      margin: 0 0 20px 0;
+    }
+
+    @media (min-width: 1000px) {
+      .poster {   
+        float: left;
+        margin: -20px 20px 0 0;
+      }
+    }
+
+    #footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>  
+  <div id="header">
+    <b>Oliver Park</b> Director <span>+</span> Writer <span>+</span> Nightmare Enthusiast
+  </div>
+  <div id="content">
+    <div class="grid">
+      <div class="box" onclick="openModal('vicious')" style="background-image: url('./img/tile_vicious.jpg');">
+        <div class="title">Vicious</div>
+        <div class="subtitle">Short</div>
+      </div>
+      <div class="box" onclick="openModal('still')" style="background-image: url('./img/tile_still.jpg');">
+        <div class="title">Still</div>
+        <div class="subtitle">Crypt TV 2017</div>
+      </div>
+      <div class="box" onclick="openModal('offering')" style="background-image: url('./img/tile_offering.jpg');">
+        <div class="title">The Offering</div>
+        <div class="subtitle">Lionsgate</div>
+      </div>
+      <div class="box" onclick="openModal('about')" style="background-image: url('./img/tile_about.jpg');">
+        <div class="title">About</div>
+        <div class="subtitle">Contact and coaching</div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <p><a href="mailto:info@oliverpark.co.uk" style="margin-bottom:8px;">info@oliverpark.co.uk</a></p>
+      <p>Reps <a href="mailto:email@email.com">email@email.com</a> Gersh US <a href="mailto:email@email.com">email@email.com</a> Independent UK</p>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal" id="modal-vicious">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">← back</div>
+      <div class="modal-header"><img class="poster" src="./img/poster_vicious.jpg" alt="Vicious poster" /></div>
+      <div>
+        <p>Written, Directed and Produced in 2016, acquired by Alter.</p>
+        <p>Won Best Film at Toronto After Dark among eight other awards and nine nominations, including the prestigious Melis d’Argent (Best Short in Europe). Vicious quickly reached critical acclaim, praised as “One of the best short horror films ever made” (BuzzFeed).</p>
+      </div>
+      <div class="close bottom" onclick="closeModal()">← back</div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-still">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">← back</div>
+      <div class="modal-header"><img class="poster" src="./img/poster_still.jpg" alt="Still poster" /></div>
+      <div>
+        <p>Written, Directed and Produced in 2017, acquired by Eli Roth's Crypt TV.</p>
+        <p>Premiered at Toronto After Dark Film Festival, winning five awards and twelve nominations.</p>
+      </div>
+      <div class="close bottom" onclick="closeModal()">← back</div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-offering">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">← back</div>
+      <div class="modal-header"><img class="poster" src="./img/poster_offering.jpg" alt="The Offering poster" /></div>
+      <div>
+        <p>Directed by Oliver Park and released in 2022 (Lionsgate, Decal).</p>
+        <p>Currently streaming on Netflix, The Offering opened in over 400 theaters across the United States and was quickly recognized as one of the standout independent horror films of the year. The film ranked in the top 10 horror releases on several major VOD platforms, including Apple and Amazon, and received praise for its chilling atmosphere and bold direction. It became the #1 horror film on iTunes UK, and was selected as a Rotten Tomatoes “Certified Fresh”.</p>
+      </div>
+      <div class="close bottom" onclick="closeModal()">← back</div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-about">
+    <div class="modal-content">
+      <div class="close" onclick="closeModal()">← back</div>
+      <div class="modal-header">About</div>
+      <p>Hey, I’m Oliver Park. I directed <em>The Offering</em> and I’m working on various other up and coming studio features. I’ve had the privilege of making studio films, but I started out making low-budget shorts just like everyone else.</p>
+      <p>Now I’m offering private mentoring to help new writers, directors, and actors get their projects made, and actually break in. Get in touch for a free 15-min consultation to see if I can help.</p>
+      <p><a href="mailto:info@oliverpark.co.uk">info@oliverpark.co.uk</a></p>
+      <div class="close bottom" onclick="closeModal()">← back</div>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (!modal) return;
+      document.querySelectorAll('.modal').forEach(m => {
+        m.classList.remove('show', 'hide');
+        if (m !== modal) m.style.display = 'none';
+      });
+      modal.style.display = 'block';
+      requestAnimationFrame(() => {
+        modal.classList.add('show');
+      });
+    }
+
+    function closeModal() {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (!modal) return;
+        modal.classList.remove('show');
+        modal.classList.add('hide');
+        setTimeout(() => {
+          if (modal) modal.style.display = 'none';
+        }, 300);
+      });
+    }
+  </script>
+</body>
+</html>
