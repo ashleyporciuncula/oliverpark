@@ -13,7 +13,6 @@
     filter: brightness(85%);
     color: #9e8c77;
   }
-
   a:hover {
     filter: brightness(100%);
   }
@@ -21,8 +20,17 @@
   h1{
     font-family: 'Pathway Gothic One', cursive;
     color: #9e8c77;
-    font-size:22px;
-    margin-bottom:20px;
+    font-size:26px;
+    margin-bottom:26px;
+  }
+  p + h1{
+    margin-top:36px;
+  }
+  h2{
+    font-family: 'Pathway Gothic One', cursive;
+    color: #fff;
+    font-size:20px;
+    margin:36px 0 16px;
   }
 
   #header{
@@ -180,4 +188,11 @@
     text-align: center;
     margin-top: 40px;
     font-size: 12px;
+  }
+
+  .pricing{
+    color: #e7e2dd;
+  }
+  .pricing b{
+    color:#fff;
   }
