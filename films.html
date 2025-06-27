@@ -33,11 +33,21 @@
   </div>
   <div id="content">
     <div class="grid">
-      <div class="box" onclick="window.location.href='./films.html'" style="background-image: url('./img/tile_offering.jpg');">
-        <div class="title">Films</div>
+      <div class="box" onclick="openModal('vicious')" style="background-image: url('./img/tile_vicious.jpg');">
+        <div class="title">Vicious</div>
+        <div class="subtitle">Alter</div>
       </div>
-      <div class="box" onclick="window.location.href='./mentorship.html'" style="background-image: url('./img/tile_about.jpg');">
-        <div class="title">Mentoring</div>
+      <div class="box" onclick="openModal('still')" style="background-image: url('./img/tile_still.jpg');">
+        <div class="title">Still</div>
+        <div class="subtitle">Crypt TV</div>
+      </div>
+      <div class="box" onclick="openModal('offering')" style="background-image: url('./img/tile_offering.jpg');">
+        <div class="title">The Offering</div>
+        <div class="subtitle">Lionsgate</div>
+      </div>
+      <div class="box" onclick="openModal('more')" style="background-image: url('./img/tile_about.jpg');">
+        <div class="title">More</div>
+        <div class="subtitle"></div>
       </div>
     </div>
 
@@ -94,17 +104,42 @@
     </div>
   </div>
 
-  <div class="modal" id="modal-about">
+  <div class="modal" id="modal-more">
     <div class="modal-content">
       <div class="close" onclick="closeModal()">← back</div>
       <div class="modal-header">About</div>
       <p>Director and screenwriter known for The Offering, released by Lionsgate, available on Netflix.</p>
       <p>With a background in writing and directing acclaimed short films including the critically acclaimed Vicious, I transitioned into studio filmmaking after selling a pitch to a major studio, where my work continues to explore grounded, character-driven horror with commercial appeal. While currently attached to a number of upcoming studio projects in the genre space,</p>
       <p>I am now offering private mentorship to emerging writers, directors, and actors, helping them navigate the industry and bring your own projects to life. <a href="./mentorship.html">Learn More</a></p>
-      <p><a href="mailto:info@oliverpark.co.uk" target="_blank">info@oliverpark.co.uk</a></p>
+      <p>Get in touch at <a href="mailto:info@oliverpark.co.uk" target="_blank">info@oliverpark.co.uk</a></p>
       <div class="close bottom" onclick="closeModal()">← back</div>
     </div>
   </div>
 
+  <script>
+    function openModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (!modal) return;
+      document.querySelectorAll('.modal').forEach(m => {
+        m.classList.remove('show', 'hide');
+        if (m !== modal) m.style.display = 'none';
+      });
+      modal.style.display = 'block';
+      requestAnimationFrame(() => {
+        modal.classList.add('show');
+      });
+    }
+
+    function closeModal() {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (!modal) return;
+        modal.classList.remove('show');
+        modal.classList.add('hide');
+        setTimeout(() => {
+          if (modal) modal.style.display = 'none';
+        }, 300);
+      });
+    }
+  </script>
 </body>
 </html>

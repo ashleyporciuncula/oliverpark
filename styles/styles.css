@@ -192,6 +192,10 @@
     margin-top: 40px;
     font-size: 12px;
   }
+  #footer span{
+    color: #8e867c;
+    margin:0 10px;
+  }
 
   .pricing{
     color: #e7e2dd;
